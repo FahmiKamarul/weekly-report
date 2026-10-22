@@ -18,4 +18,17 @@ In Claude Code:
 /weekly-report this week I tested the login page and fixed two bugs
 ```
 
-Claude drafts the report and lists anything it added from your commits so you can remove it. When you say it's final, it saves the report to `past-reports.md`, so later reports match your style and pick up the right week number.
+Claude runs `scripts/scan-week.sh`, then drafts the report and lists anything it added from your commits so you can remove it. When you say it's final, it saves the report to `past-reports.md`, so later reports match your style and pick up the right week number.
+
+## The scan script
+
+`scripts/scan-week.sh` looks in your work folder and lists:
+
+- your commits since Monday in each git repo (matched by that repo's git email)
+- the folders and files you changed since Monday
+
+It only reads; it never changes anything. You can run it yourself to see what Claude sees:
+
+```bash
+bash ~/.claude/skills/weekly-report/scripts/scan-week.sh 2026-10-19 ~/work
+```
